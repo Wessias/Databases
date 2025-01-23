@@ -44,6 +44,9 @@ SET client_min_messages TO NOTICE; -- More talk
 -- here (without creating a view) and when it works just add
 -- CREATE VIEW and put it in views.sql
 
+SELECT idnr, name, login, Students.program, branch  FROM Students 
+LEFT JOIN StudentBranches ON idnr = student;
+
 
 -- Tests various queries from the assignment,
 -- uncomment these as you make progress

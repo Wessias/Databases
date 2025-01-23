@@ -1,9 +1,9 @@
 -- This file will contain all your tables
 CREATE TABLE Students (
     idnr CHAR(10) NOT NULL PRIMARY KEY
-    CHECK (idnr SIMILAR TO '[0-9]{10]}'),
+    CHECK (idnr SIMILAR TO '[0-9]{10}'),
     name TEXT NOT NULL
-    CHECK (name LIKE '% %'),
+    CHECK (name LIKE '%'), --Used to check % % but this does not work with the test data
     login TEXT NOT NULL,
     program TEXT NOT NULL
 

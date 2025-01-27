@@ -16,15 +16,15 @@ CREATE TABLE Branches(
 );
 
 CREATE TABLE Courses(
-    code TEXT NOT NULL PRIMARY KEY,
+    code CHAR(6) NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
-    credits INT NOT NULL
+    credits FLOAT NOT NULL
     CHECK (credits >= 0 ),
     department TEXT NOT NULL
 );
 
 CREATE TABLE LimitedCourses(
-    code TEXT NOT NULL PRIMARY KEY,
+    code CHAR(6) NOT NULL PRIMARY KEY,
     capacity INT NOT NULL
     CHECK (capacity >= 0),
     FOREIGN KEY (code) REFERENCES Courses(code)
@@ -44,7 +44,7 @@ CREATE TABLE Classifications(
 
 
 CREATE TABLE Classified(
-    course TEXT NOT NULL,
+    course CHAR(6) NOT NULL,
     classification TEXT NOT NULL,
     PRIMARY KEY (course, classification),
     FOREIGN KEY (course) REFERENCES Courses(code),
@@ -52,14 +52,14 @@ CREATE TABLE Classified(
 );
 
 CREATE TABLE MandatoryProgram(
-    course TEXT NOT NULL,
+    course CHAR(6) NOT NULL,
     program TEXT NOT NULL,
     PRIMARY KEY (course, program),
     FOREIGN KEY (course) REFERENCES Courses(code)
 );
 
 CREATE TABLE MandatoryBranch(
-    course TEXT NOT NULL,
+    course CHAR(6) NOT NULL,
     branch TEXT NOT NULL,
     program TEXT NOT NULL,
     PRIMARY KEY (course, branch, program),
@@ -67,7 +67,7 @@ CREATE TABLE MandatoryBranch(
 );
 
 CREATE TABLE RecommendedBranch(
-    course TEXT NOT NULL,
+    course CHAR(6) NOT NULL,
     branch TEXT NOT NULL,
     program TEXT NOT NULL,
     PRIMARY KEY (course, branch, program),
@@ -77,7 +77,7 @@ CREATE TABLE RecommendedBranch(
 
 CREATE TABLE Registered(
     student CHAR(10) NOT NULL,
-    course TEXT NOT NULL,
+    course CHAR(6) NOT NULL,
     PRIMARY KEY (student, course),
     FOREIGN KEY (student) REFERENCES Students(idnr),
     FOREIGN KEY (course) REFERENCES Courses(code)
@@ -85,7 +85,7 @@ CREATE TABLE Registered(
 
  CREATE TABLE Taken(
     student CHAR(10) NOT NULL,
-    course TEXT NOT NULL,
+    course CHAR(6) NOT NULL,
     grade CHAR(1) NOT NULL
     CHECK (grade IN ('U', '3', '4', '5')),
     PRIMARY KEY (student, course),
@@ -96,7 +96,7 @@ CREATE TABLE Registered(
 
  CREATE TABLE WaitingList(
     student CHAR(10) NOT NULL,
-    course TEXT NOT NULL,
+    course CHAR(6) NOT NULL,
     position INTEGER NOT NULL
     CHECK (position >= 0),
     PRIMARY KEY (student, course),

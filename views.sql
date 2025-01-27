@@ -32,13 +32,14 @@ WITH AllMandatory AS (
     SELECT student, MandatoryBranch.course
     FROM StudentBranches
     JOIN MandatoryBranch ON StudentBranches.branch = MandatoryBranch.branch
+                        AND StudentBranches.program = MandatoryBranch.program
 )
 SELECT student, course
 FROM AllMandatory
 WHERE NOT EXISTS (
     SELECT 42
-    FROM FinishedCourses
-    WHERE FinishedCourses.student = AllMandatory.student AND FinishedCourses.course = AllMandatory.course
+    FROM PassedCourses
+    WHERE PassedCourses.student = AllMandatory.student AND PassedCourses.course = AllMandatory.course
 );
 
 --CREATE VIEW PathToGraduation AS

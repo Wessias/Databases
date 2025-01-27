@@ -41,7 +41,7 @@ WHERE NOT EXISTS (
     WHERE FinishedCourses.student = AllMandatory.student AND FinishedCourses.course = AllMandatory.course
 );
 
---CREATE VIEW PathToGraduation AS
+CREATE VIEW PathToGraduation AS
 WITH TotalCredits AS (
     SELECT student, SUM(credits) AS totalCredits
     FROM PassedCourses

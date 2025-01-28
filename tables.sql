@@ -61,7 +61,8 @@ CREATE TABLE MandatoryBranch(
     course CHAR(6) NOT NULL,
     branch TEXT NOT NULL,
     program TEXT NOT NULL,
-    PRIMARY KEY course REFERENCES Courses(code),
+    PRIMARY KEY (course, branch, program),
+    FOREIGN KEY course REFERENCES Courses(code),
     FOREIGN KEY (branch,program) REFERENCES Branches(name, program)
 );
 

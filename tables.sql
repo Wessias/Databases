@@ -2,8 +2,7 @@
 CREATE TABLE Students (
     idnr CHAR(10) NOT NULL PRIMARY KEY
     CHECK (idnr SIMILAR TO '[0-9]{10}'),
-    name TEXT NOT NULL
-    CHECK (name LIKE '%'), --Used to check % % but this does not work with the test data
+    name TEXT NOT NULL,
     login TEXT NOT NULL,
     program TEXT NOT NULL
 
